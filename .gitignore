@@ -11,3 +11,60 @@ _SUCCESS
 # data/
 # project1/output/
 # project2-uber/output/
+
+venv/
+.venv/
+
+airflow_venv/
+airflow_local/
+.venv/
+
+############################
+# Python
+############################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.out
+
+############################
+# Virtual Environments
+############################
+.venv/
+venv/
+env/
+ENV/
+*venv*/
+
+############################
+# Airflow
+############################
+airflow_home/
+logs/
+airflow.db
+airflow.cfg
+webserver_config.py
+unittests.cfg
+
+############################
+# Environment Variables
+############################
+.env
+.env.*
+*.env
+
+############################
+# IDE / Editor
+############################
+.vscode/
+.idea/
+*.swp
+
+############################
+# OS Files
+############################
+.DS_Store
+Thumbs.db

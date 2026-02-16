@@ -1,12 +1,12 @@
 
-#airflow-project/
+airflow-project/
 │
-├── .venv/
-├── airflow_home/
-│   ├── dags/
-│   │   └── first_dag.py
-│   └── airflow.db
-└── requirements.txt
+├── dags/
+├── data/
+│   ├── raw.csv
+│   └── processed.csv
+
+
 
 
 # Create Virtual Environment
@@ -14,6 +14,9 @@ python -m venv .venv
 source .venv/bin/activate   # Mac/Linux
 .venv\Scripts\activate      # Windows
 
+
+Once the .venv is activate dthen only run this 
+export PATH="$(pwd)/.venv/bin:$PATH"
 
 Upgrade pip:
 
@@ -98,37 +101,49 @@ kill -9 9714
 
 
 
-# Create Your First DAG
+# Install PySpark
 
-Airflow automatically loads DAGs from:
+Inside .venv:
 
-AIRFLOW_HOME/dags/
+pip install pyspark
 
-
-Create folder:
-
-mkdir -p airflow_home/dags
-
+# Create Spark ETL Script
 
 Create file:
 
-touch airflow_home/dags/first_dag.py
+etl_spark.py
 
-# Refresh Airflow UI
+Test manually:
 
-Go to Airflow UI
+python etl_spark.py
 
-Turn ON the DAG
 
-Click ▶ Trigger DAG
+Step 4 — Orchestrate with Airflow
+
+Create DAG:
+
+dags/spark_etl_dag.py
+
+
+
+# Now Run ETL
+
+Start Airflow:
+
+airflow standalone
+
+
+Go to UI
+Enable spark_etl_pipeline
+Trigger it
+
+Check:
+
+data/processed.csv
+
 
 You should see:
 
-print_hello
+Only Alice & Charlie
 
-print_world
-
-Running in sequence.
-
-🧪 Test DAG from CLI (Optional)
-airflow tasks test my_first_dag print_hello 2024-01-01
+Salary increased by 10%
